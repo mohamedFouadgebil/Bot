@@ -6,242 +6,63 @@
     <title>Red Phantom Chat</title>
     <link rel="icon" href="./Images/Red Phantom.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <style>
-      ::-webkit-scrollbar {
-        width: 7px;
+      ::-webkit-scrollbar { width: 5px; }
+      ::-webkit-scrollbar-thumb { background: #ff003c; border-radius: 10px; }
+      body { margin: 0; padding: 0; font-family: "Inter", sans-serif; background: #0b0d12; color: #e5e7eb; overflow-x: hidden; position: relative; }
+      body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: -1; }
+      .cyber-glow { position: fixed; width: 300px; height: 300px; top: 20%; left: -100px; background: #ff2d3d22; filter: blur(100px); z-index: -1; }
+      header { display: flex; flex-direction: column; align-items: center; padding: 15px 20px; border-bottom: 1px solid #1f2937; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+      header h1 { font-size: 24px; font-weight: 800; color: #ff2d39; text-shadow: 0 0 10px #ff2330; margin-bottom: 10px; }
+      nav { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+      header a { text-decoration: none; color: #9ca3af; font-size: 14px; transition: 0.2s; font-weight: 600; }
+      header a:hover { color: #fff; }
+      @media (min-width: 768px) {
+        header { flex-direction: row; justify-content: space-between; padding: 10px 50px; }
+        header h1 { margin-bottom: 0; font-size: 28px; }
+        nav { gap: 25px; }
+        .cyber-glow { width: 600px; height: 600px; left: -250px; filter: blur(180px); }
       }
-      ::-webkit-scrollbar-thumb {
-        background: #ff003c;
-        border-radius: 10px;
+      .container { text-align: center; padding: 80px 20px 60px; }
+      .title { font-size: 38px; font-weight: 800; margin-bottom: 15px; color: #fff; text-shadow: 0 0 15px #ff2d3d88; line-height: 1.2; }
+      .subtitle { font-size: 16px; opacity: 0.8; max-width: 650px; margin: 0 auto 30px; line-height: 1.6; }
+      @media (min-width: 768px) {
+        .container { padding: 140px 20px 100px; }
+        .title { font-size: 58px; }
+        .subtitle { font-size: 19px; margin-bottom: 40px; }
       }
-
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: "Inter", sans-serif;
-        background: #0b0d12;
-        color: #e5e7eb;
-        overflow-x: hidden;
-        position: relative;
+      .btns { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 25px; }
+      .btn { width: 100%; max-width: 250px; padding: 14px 30px; border: none; border-radius: 30px; font-size: 16px; cursor: pointer; color: white; background: linear-gradient(135deg, #ff2d3d, #b31823); box-shadow: 0 0 20px #ff2d3d66; transition: 0.25s; font-weight: 700; text-align: center; text-decoration: none; }
+      .btn:hover { transform: scale(1.05); box-shadow: 0 0 30px #ff2d3dcc; }
+      .btn-secondary { background: #1e293b; border: 1px solid #334155; box-shadow: none; }
+      @media (min-width: 480px) { .btns { flex-direction: row; justify-content: center; } }
+      .section { padding: 60px 20px; max-width: 1100px; margin: auto; text-align: center; }
+      .section h3 { font-size: 28px; margin-bottom: 20px; color: #fff; text-shadow: 0 0 10px #ff2d3d55; }
+      .section p { font-size: 16px; opacity: 0.85; line-height: 1.7; }
+      @media (min-width: 768px) {
+        .section { padding: 80px 20px; }
+        .section h3 { font-size: 34px; }
+        .section p { font-size: 18px; }
       }
-
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        background-size: 40px 40px;
-        pointer-events: none;
-        z-index: -1;
+      .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+      .feature-box { padding: 25px; background: #11141a; border: 1px solid #1f2937; border-radius: 14px; transition: 0.25s; text-align: left; }
+      .feature-box:hover { transform: translateY(-5px); border-color: #ff2d3d99; background: #14181f; }
+      .feature-box h4 { color: #ff4757; font-size: 18px; margin-bottom: 10px; font-weight: 700; }
+      .numbers { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+      .number-box { min-width: 140px; }
+      .number-box h2 { font-size: 36px; color: #ff2d3d; margin-bottom: 5px; font-weight: 800; text-shadow: 0 0 15px #ff2d3d66; }
+      .number-box p { font-size: 14px; opacity: 0.7; }
+      @media (min-width: 768px) {
+        .numbers { gap: 60px; }
+        .number-box h2 { font-size: 48px; }
       }
-
-      .cyber-glow {
-        position: fixed;
-        width: 600px;
-        height: 600px;
-        top: 25%;
-        left: -250px;
-        background: #ff2d3d33;
-        filter: blur(180px);
-        z-index: -1;
-      }
-
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 55px;
-        border-bottom: 1px solid #1f2937;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(6px);
-      }
-
-      header h1 {
-        font-size: 30px;
-        font-weight: 800;
-        color: #ff2d39;
-        text-shadow: 0 0 10px #ff2330;
-        letter-spacing: 0.5px;
-      }
-
-      header a {
-        text-decoration: none;
-        color: #9ca3af;
-        margin-left: 25px;
-        font-size: 16px;
-        transition: 0.2s;
-      }
-
-      header a:hover {
-        color: #fff;
-      }
-
-      .container {
-        text-align: center;
-        padding: 140px 20px 100px;
-      }
-
-      .title {
-        font-size: 58px;
-        font-weight: 800;
-        margin-bottom: 15px;
-        color: #fff;
-        text-shadow: 0 0 18px #ff2d3d88;
-      }
-
-      .subtitle {
-        font-size: 19px;
-        opacity: 0.8;
-        max-width: 650px;
-        margin: auto;
-        margin-bottom: 40px;
-        line-height: 1.6;
-      }
-
-      .btns {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 25px;
-      }
-
-      .btn {
-        padding: 13px 30px;
-        border: none;
-        border-radius: 30px;
-        font-size: 17px;
-        cursor: pointer;
-        color: white;
-        background: linear-gradient(135deg, #ff2d3d, #b31823);
-        box-shadow: 0 0 20px #ff2d3d66;
-        transition: 0.25s;
-      }
-
-      .btn:hover {
-        transform: scale(1.07);
-        box-shadow: 0 0 30px #ff2d3dcc;
-      }
-
-      .btn-secondary {
-        background: #1e293b;
-        border: 1px solid #334155;
-        box-shadow: none;
-      }
-
-      .btn-secondary:hover {
-        background: #263245;
-        box-shadow: 0 0 15px #33415577;
-      }
-
-      .section {
-        padding: 80px 20px;
-        max-width: 1000px;
-        margin: auto;
-        text-align: center;
-      }
-
-      .section h3 {
-        font-size: 34px;
-        margin-bottom: 20px;
-        color: #fff;
-        text-shadow: 0 0 10px #ff2d3d55;
-      }
-
-      .section p {
-        font-size: 18px;
-        opacity: 0.85;
-        line-height: 1.7;
-      }
-
-      .features {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 25px;
-        margin-top: 40px;
-      }
-
-      .feature-box {
-        padding: 30px;
-        background: #11141a;
-        border: 1px solid #1f2937;
-        border-radius: 14px;
-        transition: 0.25s;
-        cursor: pointer;
-      }
-
-      .feature-box:hover {
-        transform: translateY(-7px) scale(1.03);
-        border-color: #ff2d3d99;
-        background: #14181f;
-      }
-
-      .feature-box h4 {
-        color: #ff4757;
-        font-size: 20px;
-        margin-bottom: 10px;
-        text-shadow: 0 0 10px #ff475733;
-      }
-
-      .numbers {
-        display: flex;
-        justify-content: center;
-        gap: 60px;
-        margin-top: 50px;
-        flex-wrap: wrap;
-      }
-
-      .number-box {
-        text-align: center;
-      }
-
-      .number-box h2 {
-        font-size: 48px;
-        color: #ff2d3d;
-        margin-bottom: 10px;
-        font-weight: 800;
-        text-shadow: 0 0 20px #ff2d3d66;
-      }
-
-      .number-box p {
-        font-size: 16px;
-        opacity: 0.7;
-      }
-
-      .cta {
-        margin-top: 80px;
-        background: linear-gradient(135deg, #ff2d3d22, #b3182322);
-        border: 1px solid #ff2d3d33;
-        padding: 50px;
-        border-radius: 16px;
-        box-shadow: 0 0 20px #ff2d3d33;
-      }
-
-      .cta h3 {
-        font-size: 30px;
-        margin-bottom: 15px;
-      }
-
-      .footer {
-        text-align: center;
-        padding: 35px;
-        opacity: 0.5;
-        font-size: 14px;
-        border-top: 1px solid #1f2937;
-        margin-top: 60px;
-      }
+      .cta { margin-top: 60px; background: linear-gradient(135deg, #ff2d3d15, #b3182315); border: 1px solid #ff2d3d33; padding: 40px 20px; border-radius: 16px; box-shadow: 0 0 20px #ff2d3d22; }
+      .cta h3 { font-size: 24px; margin-bottom: 20px; }
+      @media (min-width: 768px) { .cta { padding: 60px; } .cta h3 { font-size: 30px; } }
+      .footer { text-align: center; padding: 30px; opacity: 0.5; font-size: 12px; border-top: 1px solid #1f2937; margin-top: 40px; }
     </style>
   </head>
-
   <body>
     <div class="cyber-glow"></div>
     <header>
@@ -256,103 +77,64 @@
 
     <div class="container">
       <h2 class="title">Red Phantom Chat</h2>
-
       <p class="subtitle">
-        A next-generation Cybersecurity AI built for threat detection, red
-        teaming, vulnerability analysis, attack simulation, and deep security
-        intelligence. Designed for precision, speed, and realistic cyber
-        operations.
+        A next-generation Cybersecurity AI built for threat detection, red teaming, vulnerability analysis, and deep security intelligence. Designed for precision and speed.
       </p>
-
       <div class="btns">
-        <a href="https://red-phantom-chat-bot-mb2i.vercel.app/"><button class="btn">Launch Chat</button></a>
-        <a href="https://red-phantom-chat-bot-mb2i.vercel.app/docs.html"
-          ><button class="btn btn-secondary">Documentation</button></a
-        >
+        <a href="https://red-phantom-chat-bot-mb2i.vercel.app/" class="btn">Launch Chat</a>
+        <a href="https://red-phantom-chat-bot-mb2i.vercel.app/docs.html" class="btn btn-secondary">Documentation</a>
       </div>
     </div>
 
     <div class="section">
       <h3>Why Red Phantom?</h3>
       <p>
-        Red Phantom is designed for cybersecurity experts and learners who want
-        realistic simulations, deep analysis, and expert-level explanations of
-        modern cyber threats — from malware to network exploitation.
+        Red Phantom is designed for cybersecurity experts and learners who want realistic simulations and expert-level explanations of modern cyber threats.
       </p>
-
       <div class="numbers">
         <div class="number-box">
           <h2>1200+</h2>
-          <p>Cyber Concepts Explained</p>
+          <p>Concepts Explained</p>
         </div>
-
         <div class="number-box">
           <h2>98%</h2>
-          <p>Precision in Technical Output</p>
+          <p>Technical Precision</p>
         </div>
-
         <div class="number-box">
           <h2>24/7</h2>
-          <p>Always Available for Training</p>
+          <p>Cyber Training</p>
         </div>
       </div>
     </div>
 
     <div class="section">
       <h3>Key Features</h3>
-
       <div class="features">
         <div class="feature-box">
           <h4>Threat Analysis</h4>
-          <p>
-            Analyze real cyberattacks, malware families, and advanced
-            techniques.
-          </p>
+          <p>Analyze real cyberattacks, malware families, and advanced persistent threats.</p>
         </div>
-
         <div class="feature-box">
           <h4>Red Team Tools</h4>
-          <p>
-            Simulation of phishing, recon, OSINT, lateral movement &
-            exploitation.
-          </p>
+          <p>Simulation of phishing, recon, OSINT, and exploitation techniques.</p>
         </div>
-
         <div class="feature-box">
           <h4>Blue Team Defense</h4>
-          <p>
-            Detection engineering, SIEM logs, incident response & mitigation.
-          </p>
+          <p>Detection engineering, SIEM logs, incident response and mitigation strategies.</p>
         </div>
-
         <div class="feature-box">
           <h4>Security Deep Dive</h4>
-          <p>Reverse engineering, memory corruption, crypto flaws & more.</p>
-        </div>
-
-        <div class="feature-box">
-          <h4>Training Mode</h4>
-          <p>Learn cybersecurity step-by-step with practical breakdowns.</p>
-        </div>
-
-        <div class="feature-box">
-          <h4>Tool Explanations</h4>
-          <p>Metasploit, BurpSuite, Wireshark, Nmap, Volatility & others.</p>
+          <p>Reverse engineering, memory corruption, and cryptographic flaws.</p>
         </div>
       </div>
     </div>
 
     <div class="section">
-      <h3>How to Use Red Phantom</h3>
-      <p>
-        Simply ask your question or describe a cyber scenario. Red Phantom will
-        reply instantly with detailed explanations, attack paths, defenses,
-        real-world examples, and step-by-step reasoning.
-      </p>
-
       <div class="cta">
         <h3>Ready to Level Up Your Cyber Skills?</h3>
-        <a href="https://red-phantom-chat-bot-mb2i.vercel.app/"><button class="btn">Start Now</button></a>
+        <div class="btns">
+          <a href="https://red-phantom-chat-bot-mb2i.vercel.app/" class="btn">Start Now</a>
+        </div>
       </div>
     </div>
 
